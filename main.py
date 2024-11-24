@@ -3,14 +3,14 @@ from os import times
 
 program = \
     [
-        "A set 1",
-        "B set 0",
-        "Fib set 0",
+        ". A set 1",
+        ". B set 0",
+        ". Fib set 0",
         "math. Fib sum A B",
-        "B set A",
-        "A set Fib",
-        "Fib show",
-        "goto 3"
+        ". B set A",
+        ". A set Fib",
+        ". Fib show",
+        ". goto 3"
     ]
 for var in program:
     program[program.index(var)] = program[program.index(var)].split(" ")
@@ -34,8 +34,20 @@ while line != len(program)-1:
     #print(line)
     time.sleep(0.1)
 
+    #"." for basics function
+    if program[line][0] == ".":
+        if program[line][1] == "goto":
+            line = int(param(program[line][2])) -1
+
+        elif program[line][2] == "set":
+            var[program[line][1]] = param(program[line][3])
 
 
+        elif program[line][2] == "show":
+            print(param(program[line][1]))
+
+
+    #math operation function
     if program[line][0] == "math.":
         if program[line][2] == "sum":
             #print(param(program[line][3]) + "-num1")
@@ -62,15 +74,6 @@ while line != len(program)-1:
             var[program[line][1]] = int(param(program[line][3])) % int(param(program[line][4]))
 
 
-    elif program[line][0] == "goto":
-        line = int(param(program[line][1])) -1
-
-    elif program[line][1] == "set":
-        var[program[line][0]] = param(program[line][2])
-
-
-    elif program[line][1] == "show":
-        print(param(program[line][0]))
 
 
 
