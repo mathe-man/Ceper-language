@@ -8,21 +8,27 @@ fibonaciProgram = \
         "math. Fib sum A B",
         ". B set A",
         ". A set Fib",
-        ". Fib show",
+        "Fib show",
         "program. sleep 0.6",
         "program. goto 3"
     ]
 
-inputProgram = \
+aProgram = \
     [
-        ". name set a",
-        ". name input",
-        "program. sleep 1.5",
-        ". name show"
+        ". Moy set 0",
+        ". MoyDiv set 0",
+        ". note input",
+        ". note show",
+        "math. Moy sum Moy note",
+        ". MoyDiv quot Moy 10",
+        ". MoyDiv show",
+        "caca",
+        "program. goto 2"
+
     ]
 
 
-program = inputProgram
+program = fibonaciProgram
 for var in program:
     program[program.index(var)] = program[program.index(var)].split(" ")
 
@@ -95,6 +101,7 @@ while line != len(program)-1:
         elif program[line][1] == "goto":
             line = int(param(program[line][2])) -1
 
+        #elif program[line][1] == ""
 
         elif program[line][2] == "line":
             var[program[line][1]] = line
@@ -103,5 +110,8 @@ while line != len(program)-1:
             time.sleep(float(param(program[line][2])))
 
 
+    else:
+        print(f"\033[31mError! Line {line + 1}: {program[line]}\033[0m")
+        break
 
 exit(line)
