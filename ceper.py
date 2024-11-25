@@ -1,4 +1,6 @@
 import time
+from coloration import color
+
 
 fibonaciProgram = \
     [
@@ -8,9 +10,9 @@ fibonaciProgram = \
         "math. Fib sum A B",
         ". B set A",
         ". A set Fib",
-        "Fib show",
+        ". Fib show",
         "program. sleep 0.6",
-        "program. goto 3"
+        "program. goto 4"
     ]
 
 aProgram = \
@@ -29,8 +31,8 @@ aProgram = \
 
 
 program = fibonaciProgram
-for var in program:
-    program[program.index(var)] = program[program.index(var)].split(" ")
+for object in program:
+    program[program.index(object)] = program[program.index(object)].split(" ")
 
 var = {}
 
@@ -58,7 +60,7 @@ while line != len(program)-1:
 
 
         elif program[line][2] == "show":
-            print(param(program[line][1]))
+            print(color(param(program[line][1]), "yellow"))
 
         elif program[line][2] == "input":
             var[program[line][1]] = input()
@@ -99,7 +101,7 @@ while line != len(program)-1:
             break
 
         elif program[line][1] == "goto":
-            line = int(param(program[line][2])) -1
+            line = int(param(program[line][2])) -2
 
         #elif program[line][1] == ""
 
@@ -111,7 +113,7 @@ while line != len(program)-1:
 
 
     else:
-        print(f"\033[31mError! Line {line + 1}: {program[line]}\033[0m")
+        print(color(f"Error! Line {line + 1}: {program[line]}", "red"))
         break
 
 exit(line)
